@@ -23,6 +23,24 @@
           Essential Links
         </q-item-label>
 
+        <router-link
+          v-for="route in routerLinks"
+          :key="route"
+          :to="route.link"
+          class="myRouter"
+        >
+          <q-item clickable tag="a">
+            <q-item-section avatar>
+              <q-icon :name="route.icon" />
+            </q-item-section>
+
+            <q-item-section>
+              <q-item-label>{{ route.title }} </q-item-label>
+              <q-item-label caption>{{ route.caption }} </q-item-label>
+            </q-item-section>
+          </q-item>
+        </router-link>
+
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
@@ -52,20 +70,6 @@ import { useQuasar } from 'quasar';
 
 const linksList = [
   {
-    title: 'Home',
-    caption: 'Main Page',
-    icon: 'home',
-    link: '/#/',
-    target: '_self',
-  },
-  {
-    title: 'Sources',
-    caption: 'Sources used',
-    icon: 'source',
-    link: '/#/sources',
-    target: '_self',
-  },
-  {
     title: 'Code',
     caption: 'Code used for website',
     icon: 'code',
@@ -83,6 +87,20 @@ export default defineComponent({
   setup() {
     const $q = useQuasar();
     const leftDrawerOpen = ref(false);
+    const routerLinks = [
+      {
+        title: 'Home',
+        caption: 'Main Page',
+        icon: 'home',
+        link: '/',
+      },
+      {
+        title: 'Sources',
+        caption: 'Sources used',
+        icon: 'source',
+        link: '/sources',
+      },
+    ];
 
     function toggleDarkMode() {
       $q.dark.toggle();
@@ -90,6 +108,7 @@ export default defineComponent({
 
     return {
       toggleDarkMode,
+      routerLinks,
       essentialLinks: linksList,
       leftDrawerOpen,
       toggleLeftDrawer() {
@@ -111,5 +130,10 @@ export default defineComponent({
 .q-drawer--dark {
   background: #1e1e1e;
   transition: 0.3s;
+}
+
+.myRouter {
+  color: $grey-9;
+  text-decoration: none;
 }
 </style>
