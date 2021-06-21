@@ -47,6 +47,8 @@
 
 <script lang="ts">
 import EssentialLink from 'components/EssentialLink.vue';
+import { defineComponent, ref } from 'vue';
+import { useQuasar } from 'quasar';
 
 const linksList = [
   {
@@ -71,9 +73,6 @@ const linksList = [
   },
 ];
 
-import { defineComponent, ref } from 'vue';
-import { useQuasar } from 'quasar';
-
 export default defineComponent({
   name: 'MainLayout',
 
@@ -81,17 +80,9 @@ export default defineComponent({
     EssentialLink,
   },
 
-  // methods: {
-  //   doStuff() {
-  //     console.log('SWITCH!');
-  //     $q.dark.toggle();
-  //   },
-  // },
-
   setup() {
     const $q = useQuasar();
     const leftDrawerOpen = ref(false);
-    // const darkMode = ref($q.dark);
 
     function toggleDarkMode() {
       $q.dark.toggle();
