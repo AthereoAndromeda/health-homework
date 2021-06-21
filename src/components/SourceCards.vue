@@ -20,12 +20,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-
-interface SourceCard {
-  title: string;
-  link: string;
-  author: string;
-}
+import { SourceCard } from './models';
 
 export default defineComponent({
   name: 'SourceCards',
