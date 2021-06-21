@@ -11,25 +11,15 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
+        <q-toolbar-title> Intentional Injuries </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>Health Homework</div>
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      class="bg-grey-1"
-    >
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="">
       <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
-        >
+        <q-item-label header class="text-grey-8">
           Essential Links
         </q-item-label>
 
@@ -37,6 +27,14 @@
           v-for="link in essentialLinks"
           :key="link.title"
           v-bind="link"
+        />
+
+        <q-toggle
+          label="Dark Mode"
+          v-model="first"
+          color="black"
+          icon="dark_mode"
+          @update:model-value="toggleDarkMode"
         />
       </q-list>
     </q-drawer>
@@ -48,72 +46,79 @@
 </template>
 
 <script lang="ts">
-import EssentialLink from 'components/EssentialLink.vue'
+import EssentialLink from 'components/EssentialLink.vue';
 
 const linksList = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
+    title: 'Home',
+    caption: 'Main Page',
+    icon: 'home',
+    link: '/#/',
+    target: '_self',
   },
   {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
+    title: 'Sources',
+    caption: 'Sources used',
+    icon: 'source',
+    link: '/#/sources',
+    target: '_self',
+  },
+  {
+    title: 'Code',
+    caption: 'Code used for website',
     icon: 'code',
-    link: 'https://github.com/quasarframework'
+    link: 'https://github.com/redstripez08/health-homework',
   },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
 ];
 
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref } from 'vue';
+import { useQuasar } from 'quasar';
 
 export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink
+    EssentialLink,
   },
 
-  setup () {
-    const leftDrawerOpen = ref(false)
+  // methods: {
+  //   doStuff() {
+  //     console.log('SWITCH!');
+  //     $q.dark.toggle();
+  //   },
+  // },
+
+  setup() {
+    const $q = useQuasar();
+    const leftDrawerOpen = ref(false);
+    // const darkMode = ref($q.dark);
+
+    function toggleDarkMode() {
+      $q.dark.toggle();
+    }
 
     return {
+      toggleDarkMode,
       essentialLinks: linksList,
       leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
-    }
-  }
-})
+      toggleLeftDrawer() {
+        leftDrawerOpen.value = !leftDrawerOpen.value;
+      },
+      first: $q.dark.isActive,
+    };
+  },
+});
 </script>
+
+<style lang="scss">
+.q-drawer--light,
+.q-drawer--standard {
+  background: $grey-3;
+  transition: 0.3s;
+}
+
+.q-drawer--dark {
+  background: #1e1e1e;
+  transition: 0.3s;
+}
+</style>
