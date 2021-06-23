@@ -10,7 +10,9 @@
       <q-card-section>
         <div class="text-h5 q-pa-sm">{{ content.caption }}</div>
         <q-separator />
-        <div class="text-body1 q-pt-md">{{ content.description }}</div>
+        <div class="q-pt-md">
+          <p class="text-body1 q-pa-none">{{ content.description }}</p>
+        </div>
       </q-card-section>
     </q-card>
   </section>
@@ -41,5 +43,9 @@ h2,
 h5,
 .text-h5 {
   font-family: 'Montserrat';
+}
+
+p {
+  text-indent: 3.5em;
 }
 </style>
