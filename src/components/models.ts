@@ -1,10 +1,7 @@
-export interface Todo {
-  id: number;
-  content: string;
-}
-
-export interface Meta {
-  totalCount: number;
+interface InjuryExample {
+    title: string;
+    description: string;
+    link: string;
 }
 
 export interface Injury {
@@ -12,6 +9,7 @@ export interface Injury {
   imgUrl: string;
   caption: string;
   description: string;
+  examples?: InjuryExample[];
   speed?: number;
 }
 
