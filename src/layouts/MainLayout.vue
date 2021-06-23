@@ -20,7 +20,7 @@
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
         <q-item-label header class="text-grey-8">
-          Essential Links
+          Essential Links and Config
         </q-item-label>
 
         <router-link
@@ -47,13 +47,22 @@
           v-bind="link"
         />
 
-        <q-toggle
-          label="Dark Mode"
-          v-model="first"
-          color="black"
-          icon="dark_mode"
-          @update:model-value="toggleDarkMode"
-        />
+        <q-item clickable @click="toggleDarkMode" class="q-pl-none">
+          <q-item-section avatar>
+            <!-- label="Dark Mode" -->
+            <q-toggle
+              v-model="darkMode"
+              color="black"
+              icon="dark_mode"
+              @update:model-value="toggleDarkMode"
+            />
+          </q-item-section>
+
+          <q-item-section>
+            <q-item-label> Dark Mode </q-item-label>
+            <q-item-label caption> Use a Dark Theme instead </q-item-label>
+          </q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
 
@@ -87,6 +96,7 @@ export default defineComponent({
   setup() {
     const $q = useQuasar();
     const leftDrawerOpen = ref(false);
+    const darkModeStatus = ref($q.dark.isActive);
 
     const routerLinks = [
       {
@@ -105,6 +115,7 @@ export default defineComponent({
 
     function toggleDarkMode() {
       $q.dark.toggle();
+      darkModeStatus.value = $q.dark.isActive;
     }
 
     return {
@@ -115,7 +126,7 @@ export default defineComponent({
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
-      first: $q.dark.isActive,
+      darkMode: darkModeStatus,
     };
   },
 });
