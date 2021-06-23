@@ -31,6 +31,16 @@ export default defineComponent({
   setup() {
     const contents: SourceCard[] = [
       {
+        title: "Stedman's Medical Dictionary",
+        author: 'Lippincott Williams & Wilkins',
+        link: 'https://archive.org/details/stedmansmedicald00sted_3',
+      },
+      {
+        title: 'Suicide Fact Sheet',
+        author: 'World Health Organization',
+        link: 'https://www.who.int/en/news-room/fact-sheets/detail/suicide',
+      },
+      {
         title: 'Classifications of Injury',
         author: 'World Health Organization',
         link: 'https://www.who.int/classifications/icd/adaptations/iceci/en/',

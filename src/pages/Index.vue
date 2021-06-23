@@ -19,7 +19,7 @@
         />
         <q-carousel-slide
           :name="2"
-          img-src="https://cdn.britannica.com/33/129733-050-AF95D301/Smoke-flames-twin-towers-attacks-World-Trade-September-11-2001.jpg"
+          img-src="https://insidearabia.com/wp-content/uploads/2021/04/042721-In-this-July-22-2014-file-photo-smoke-and-fire-from-a-devastating-Israeli-airstrike-rise-over-Gaza-City-during-the-holy-month-of-Ramadan.-AP-Photo-Hatem-Moussa-1280x640.jpg"
         />
         <q-carousel-slide
           :name="3"
@@ -27,7 +27,7 @@
         />
         <q-carousel-slide
           :name="4"
-          img-src="https://cdn.quasar.dev/img/quasar.jpg"
+          img-src="https://media.sciencephoto.com/image/h2000445/800wm"
         />
       </q-carousel>
     </div>
@@ -77,6 +77,19 @@ import { AxiosResponse } from 'axios';
 
 const injuries: Injury[] = [
   {
+    title: 'Suicide',
+    imgUrl: 'https://d.newsweek.com/en/full/1355243/noose.jpg',
+    caption: 'Rope used for Hanging',
+    description: `
+      Suicide is the act of intentionally causing one's own death. There are many ways
+      and methods to commit suicide, with the most common being hanging, poisoning, and
+      jumping off buildings, and self-inflicted gunshot wounds. Suicide is one of the most
+      common causes of death, resulting with 828,000 global deaths in 2015, making it the
+      10th leading cause of death worldwide.
+    `,
+    speed: 1.4,
+  },
+  {
     title: 'Terrorism',
     imgUrl:
       'https://cdn.britannica.com/33/129733-050-AF95D301/Smoke-flames-twin-towers-attacks-World-Trade-September-11-2001.jpg',
@@ -88,7 +101,7 @@ const injuries: Injury[] = [
       of  these acts relies not in the act itself, but rather the public's or government's 
       reaction to the act.
     `,
-    speed: 0.8,
+    speed: 1.2,
   },
   {
     title: 'Fraternity Hazing',
@@ -113,9 +126,9 @@ const injuries: Injury[] = [
 ];
 
 interface Response extends AxiosResponse {
-  data: Array<{
+  data: {
     population: number;
-  }>;
+  }[];
 }
 
 export default defineComponent({
