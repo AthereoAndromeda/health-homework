@@ -1,5 +1,5 @@
 <template>
-  <section v-for="content of contents" :key="content" class="q-pa-lg">
+  <section class="q-pa-md q-ma-sm">
     <div class="row justify-between">
       <q-parallax :src="content.imgUrl" :speed="content.speed">
         <h1 class="text-white">{{ content.title }}</h1>
@@ -8,7 +8,9 @@
 
     <q-card>
       <q-card-section>
-        <div class="text-body1">{{ content.description }}</div>
+        <div class="text-h5 q-pa-sm">{{ content.caption }}</div>
+        <q-separator />
+        <div class="text-body1 q-pt-md">{{ content.description }}</div>
       </q-card-section>
     </q-card>
   </section>
@@ -22,17 +24,22 @@ export default defineComponent({
   name: 'InjurySection',
 
   props: {
-    contents: Array as () => Injury[],
-  },
-
-  setup() {
-    return {};
+    content: {
+      type: Object as () => Injury,
+      required: true,
+    },
   },
 });
 </script>
 
 <style lang="scss" scoped>
-h2 {
+h2,
+.text-h2 {
   font-family: 'Raleway';
+}
+
+h5,
+.text-h5 {
+  font-family: 'Montserrat';
 }
 </style>
