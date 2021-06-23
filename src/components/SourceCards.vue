@@ -1,21 +1,24 @@
 <template>
-  <section class="q-pa-md row items-center q-gutter-md">
-    <q-card v-for="content in contents" :key="content" bordered>
+  <q-item
+    clickable
+    tag="a"
+    :href="content.link"
+    target="_blank"
+    class="q-pa-none"
+  >
+    <q-card bordered>
+      <!-- Title area -->
       <q-card-section>
-        <div class="text-h6">
-          <a :href="content.link">
-            {{ content.title }}
-          </a>
-        </div>
+        <div class="text-h6">{{ content.title }}</div>
       </q-card-section>
 
       <q-separator dark inset />
 
-      <q-card-section>
+      <q-card-section class="text-subtitle2">
         {{ content.author }}
       </q-card-section>
     </q-card>
-  </section>
+  </q-item>
 </template>
 
 <script lang="ts">
@@ -25,20 +28,28 @@ import { SourceCard } from './models';
 export default defineComponent({
   name: 'SourceCards',
   props: {
-    contents: {
-      type: Array as () => SourceCard[],
+    content: {
+      type: Object as () => SourceCard,
       required: true,
     },
-  },
-  setup(props) {
-    return {
-      props,
-    };
   },
 });
 </script>
 
 <style lang="scss" scoped>
+h6,
+.text-h6 {
+  font-family: 'Raleway';
+}
+
+.text-subtitle2 {
+  font-family: 'Poppins';
+}
+
+a {
+  text-decoration: none;
+}
+
 .q-card {
   background: $grey-4;
   transition: 0.3s;
