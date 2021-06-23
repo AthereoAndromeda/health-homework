@@ -10,6 +10,7 @@ export interface Meta {
 export interface Injury {
   title: string;
   imgUrl: string;
+  caption: string;
   description: string;
   speed?: number;
 }
