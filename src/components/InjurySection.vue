@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import { Injury } from './models';
 
 export default defineComponent({
@@ -27,7 +27,7 @@ export default defineComponent({
 
   props: {
     content: {
-      type: Object as () => Injury,
+      type: Object as PropType<Injury>,
       required: true,
     },
   },

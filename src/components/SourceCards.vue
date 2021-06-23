@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue';
+import { ref, defineComponent, PropType } from 'vue';
 import { SourceCard } from './models';
 
 export default defineComponent({
@@ -37,7 +37,7 @@ export default defineComponent({
 
   props: {
     content: {
-      type: Object as () => SourceCard,
+      type: Object as PropType<SourceCard>,
       required: true,
     },
   },
