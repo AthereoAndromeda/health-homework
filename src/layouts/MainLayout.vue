@@ -13,11 +13,11 @@
 
         <q-toolbar-title> Intentional Injuries </q-toolbar-title>
 
-        <div>Health Homework</div>
+        <div class="my-end-toolbar-text">9P-B01 | Q4W3 Health Homework</div>
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="">
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
         <q-item-label header class="text-grey-8">
           Essential Links
@@ -87,6 +87,7 @@ export default defineComponent({
   setup() {
     const $q = useQuasar();
     const leftDrawerOpen = ref(false);
+
     const routerLinks = [
       {
         title: 'Home',
@@ -121,6 +122,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+div.my-end-toolbar-text {
+  font-family: 'Poppins';
+}
+
 .q-drawer--light,
 .q-drawer--standard {
   background: $grey-3;
