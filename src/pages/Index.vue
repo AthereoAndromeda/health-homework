@@ -1,12 +1,12 @@
 <template>
   <q-page class="">
-    <div class="q-pa-md">
+    <div class="q-pt-none">
       <q-carousel
         animated
         v-model="slide"
         thumbnails
         infinite
-        :autoplay="autoplay"
+        :autoplay="true"
         arrows
         transition-prev="slide-right"
         transition-next="slide-left"
@@ -43,7 +43,9 @@
         Intentional Injuries are one of the most common forms or causes of
         injury, and include acts of violence, war, or can be self-imposed.
         Intentional injuries include gangs, fraternities, kidnapping, abduction
-        acts of terror or terrorism.
+        acts of terror or terrorism. Many deaths occur in the Philippines, even
+        with a population of {{ population }}, it is important to know the
+        various ways we may get harmed.
       </p>
     </div>
 
@@ -51,24 +53,40 @@
 
     <h3 class="text-center">Types of Intentional Injuries</h3>
 
-    <InjurySection :contents="injuries" />
+    <section>
+      <InjurySection
+        v-for="content of injuries"
+        :key="content.title"
+        :content="content"
+      />
+    </section>
 
-    <section></section>
+    <!-- <section class="space-thing"></section> -->
+    <footer elevated>
+      <h4>End</h4>
+    </footer>
   </q-page>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue';
+import { ref, defineComponent, onBeforeMount } from 'vue';
 import InjurySection from 'components/InjurySection.vue';
 import { Injury } from 'src/components/models';
+import { countryAPI } from 'src/boot/axios';
+import { AxiosResponse } from 'axios';
 
 const injuries: Injury[] = [
   {
     title: 'Terrorism',
     imgUrl:
       'https://cdn.britannica.com/33/129733-050-AF95D301/Smoke-flames-twin-towers-attacks-World-Trade-September-11-2001.jpg',
+    caption: 'September 11 Attacks',
     description: `
-      It
+      Terrorism is the use of intentional violence to achieve political aims. It is usually used
+      in the context of violence against non-combatants during a  war. Terrorism is used to strike
+      fear to the publics and produce terror in the memories of people. The effectiveness
+      of  these acts relies not in the act itself, but rather the public's or government's 
+      reaction to the act.
     `,
     speed: 0.8,
   },
@@ -76,6 +94,7 @@ const injuries: Injury[] = [
     title: 'Fraternity Hazing',
     imgUrl:
       'https://mlgmjdmz2q1t.i.optimole.com/HHnvME4--aY3y28g/w:1000/h:986/q:75/https://tfnlgroup.com/wp-content/uploads/2019/07/fraternities.jpg',
+    caption: 'Hazing Ritual',
     description: `
       lorem
     `,
@@ -85,6 +104,7 @@ const injuries: Injury[] = [
     title: 'Domestic Abuse',
     imgUrl:
       'https://images.theconversation.com/files/69377/original/image-20150119-14472-g0sz8l.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop',
+    caption: 'Violence againt a woman by her abuser',
     description: `
       ipsum
     `,
@@ -92,16 +112,33 @@ const injuries: Injury[] = [
   },
 ];
 
+interface Response extends AxiosResponse {
+  data: Array<{
+    population: number;
+  }>;
+}
+
 export default defineComponent({
   name: 'PageIndex',
   components: {
     InjurySection,
   },
   setup() {
+    const population = ref('<Loading...>');
+
+    onBeforeMount(async () => {
+      try {
+        const res: Response = await countryAPI.get('/capital/manila');
+        population.value = res.data[0].population.toString();
+      } catch (error) {
+        population.value = '<API CALL FAILED, RESTART PAGE TO FIX>';
+      }
+    });
+
     return {
       injuries,
+      population,
       slide: ref(1),
-      autoplay: true,
     };
   },
 });
@@ -117,7 +154,7 @@ p {
   text-indent: 5em;
 }
 
-section {
+section.space-thing {
   height: 100vh;
 }
 </style>
