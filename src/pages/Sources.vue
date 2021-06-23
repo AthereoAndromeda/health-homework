@@ -8,13 +8,20 @@
 
     <hr />
 
-    <SourceCards :contents="contents" />
+    <section class="q-pa-md row q-gutter-md">
+      <SourceCards
+        v-for="content of contents"
+        :key="content.title"
+        :content="content"
+      />
+    </section>
   </q-page>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import SourceCards from 'components/SourceCards.vue';
+import { SourceCard } from 'src/components/models';
 
 export default defineComponent({
   name: 'Sources',
@@ -22,16 +29,22 @@ export default defineComponent({
     SourceCards,
   },
   setup() {
-    const contents = [
+    const contents: SourceCard[] = [
       {
         title: 'Classifications of Injury',
         author: 'World Health Organization',
         link: 'https://www.who.int/classifications/icd/adaptations/iceci/en/',
       },
       {
-        title: 'Placeholder Title',
-        author: 'Placeholder Author',
-        link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        title:
+          "Do Terrorists Win? Rebels's use of Terrorism and Civil War Outcomes",
+        author: 'Fortnam, Virginia Page',
+        link: 'https://kb.osu.edu/handle/1811/52898',
+      },
+      {
+        title: 'Torture, Terrorism, and the Use of Violence',
+        author: 'Wisnewski, J. Jeremy',
+        link: 'https://books.google.com/books?id=QbALBwAAQBAJ&pg=PA175',
       },
     ];
 
