@@ -56,6 +56,16 @@ export default defineComponent({
         author: 'Wisnewski, J. Jeremy',
         link: 'https://books.google.com/books?id=QbALBwAAQBAJ&pg=PA175',
       },
+      {
+        title: 'Fraternity',
+        author: 'Oxford Dictionaries',
+        link: 'http://www.oxforddictionaries.com/definition/english/fraternity',
+      },
+      {
+        title: 'Assault and Battery Overview',
+        author: 'FindLaw Staff',
+        link: 'http://criminal.findlaw.com/criminal-charges/assault-and-battery-overview.html',
+      },
     ];
 
     return {
