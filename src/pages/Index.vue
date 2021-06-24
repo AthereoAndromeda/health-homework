@@ -60,11 +60,6 @@
         :content="content"
       />
     </section>
-
-    <!-- <section class="space-thing"></section> -->
-    <footer elevated>
-      <h4>End</h4>
-    </footer>
   </q-page>
 </template>
 
@@ -79,7 +74,7 @@ const injuries: Injury[] = [
   {
     title: 'Suicide',
     imgUrl: 'https://d.newsweek.com/en/full/1355243/noose.jpg',
-    caption: 'Rope used for Hanging',
+    caption: "Hangman's Noose",
     description: `
       Suicide is the act of intentionally causing one's own death. There are many ways
       and methods to commit suicide, with the most common being hanging, poisoning, and
@@ -109,19 +104,38 @@ const injuries: Injury[] = [
       'https://mlgmjdmz2q1t.i.optimole.com/HHnvME4--aY3y28g/w:1000/h:986/q:75/https://tfnlgroup.com/wp-content/uploads/2019/07/fraternities.jpg',
     caption: 'Hazing Ritual',
     description: `
-      lorem
+      A fraternity is a group of people with similar backgrounds, occupations, interests,
+      or tastes. Some of these fraternities may require a hazing ritual to become a member.
+      These rituals are often symbolic and to show your commitment and dedication to the group.
+      Hazing rituals can sometimes be extreme, and have led to the deaths of some
+      students.
     `,
     speed: 2,
   },
   {
-    title: 'Domestic Abuse',
+    title: 'Assault',
     imgUrl:
       'https://images.theconversation.com/files/69377/original/image-20150119-14472-g0sz8l.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop',
-    caption: 'Violence againt a woman by her abuser',
+    caption: 'Domestic Abuse',
     description: `
-      ipsum
+      Assault is when a person harms another with intent. Assault is broad and can range from
+      causing serious bodily injury to another, or cause bodily harm by reckless operation
+      of a motor vehicle. Other common forms are domestic abuse, and penalties for this are
+      often proportional to the severity of the attack.
     `,
-    speed: 2,
+    speed: 1.5,
+  },
+  {
+    title: 'Gang',
+    imgUrl:
+      'https://montecristomagazine.com/wp-content/uploads/2020/10/ClarkParkGangMain.jpg',
+    caption: "East Vancouver's Youth Gang, 1970's",
+    description: `
+      Gangs are a relatively tough, mostly street-based group of young people who regard themselves
+      and may be seen by others as a group who engages in criminal activity and violence. Many young
+      people often join gangs for fun, protection, and to obtain a sense of identitiy. Some well-known
+      examples are the Crips, Bloods, Money Gang Mafia, Almighty Vice Lord Nation, MS-13, and Los Zetas
+    `,
   },
 ];
 
@@ -133,9 +147,11 @@ interface Response extends AxiosResponse {
 
 export default defineComponent({
   name: 'PageIndex',
+
   components: {
     InjurySection,
   },
+
   setup() {
     const population = ref('<Loading...>');
 
@@ -159,15 +175,13 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 h2,
-h3 {
+h3,
+.text-h3,
+.text-h2 {
   font-family: 'Montserrat';
 }
 
 p {
   text-indent: 5em;
-}
-
-section.space-thing {
-  height: 100vh;
 }
 </style>
